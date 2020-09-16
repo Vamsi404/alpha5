@@ -1,0 +1,19 @@
+#include<RH_ASK.h>
+#include<SPI.h>
+
+RH_ASK driver;
+
+void setup() {
+    Serial.begin(9600);
+    if(!driver.init())
+      Serial.print("init failed");
+
+}
+
+void loop() {
+   const char *mesg="HELLO";
+   dribver.send((uint8_t*)mesg,strlen(mesg));
+   driver.waitpacketsent();
+   delay(2000);
+
+}
